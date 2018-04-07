@@ -1,0 +1,47 @@
+<html>
+   
+   <head>
+      <title>Register</title>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+   </head>
+   
+   <body>
+      <h2>Register</h2>
+      
+      <div ng-app = "mainApp" ng-controller = "loginController">
+         Username: <input type = "text" ng-model = "user.username"><br><br>
+         Password: <input type = "password" ng-model = "user.password"><br>
+         <button ng-click="login()">Login</button>
+      </div>
+      
+      <script>
+         var mainApp = angular.module("mainApp", []);
+         
+         mainApp.controller('loginController', ['$scope', '$http', function($scope, $http) {
+            const API_LOGIN_URL = '/trello_copy_app/api/login';
+            const API_REGISTER_URL = '/trello_copy_app/api/register';
+
+
+            $scope.user = {
+               fname: '',
+               lname: '',
+               username: '',
+               password: '',
+            };
+
+            $scope.login = function() {
+               $http.post(API_LOGIN_URL, { user: $scope.user }).then(function(res) {
+                  console.log(res.data);
+               });
+            };
+
+            $scope.register = function() {
+               $http.post(API_REGISTER_URL, { user: $scope.user }).then(function(res) {
+                  console.log(res.data);
+               });
+            };
+         }]);
+      </script>
+      
+   </body>
+</html>

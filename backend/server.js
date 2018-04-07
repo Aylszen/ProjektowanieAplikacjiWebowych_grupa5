@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const db = require('./db.js');
 
@@ -9,6 +10,10 @@ const PORT = 8080;
 const BASE_PATH = '/trello_copy_app/api';
 
 app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname+'/view/index.html'));
+});
 
 app.post(`${BASE_PATH}/register`, (req, res) => {
     res.set('content-type', 'application/json');
