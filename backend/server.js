@@ -11,12 +11,28 @@ const BASE_PATH = '/trello_copy_app/api';
 
 app.use(bodyParser.json());
 console.log(__dirname);
-app.get('/index', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname+'/view/index.html'));
 });
 
 app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname+'/view/register.html'));
+});
+
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname+'/view/home.html'));
+});
+
+app.get('/controller/registerController.js', (req, res) => {
+    res.sendFile(path.join(__dirname+'/controller/registerController.js'));
+});
+
+app.get('/controller/loginController.js', (req, res) => {
+    res.sendFile(path.join(__dirname+'/controller/loginController.js'));
+});
+
+app.get('/controller/ngRoute.js', (req, res) => {
+    res.sendFile(path.join(__dirname+'/controller/ngRoute.js'));
 });
 
 app.post(`${BASE_PATH}/register`, (req, res) => {
@@ -73,7 +89,7 @@ app.post(`${BASE_PATH}/login`, (req, res) => {
                 } else {
                     res.end(JSON.stringify({
                         valid: false,
-                        info: 'User with specified username does not exist in database'
+                        info: 'User with specified username does not exist!'
                     }));
                 }
             });
