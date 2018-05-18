@@ -1,4 +1,5 @@
 var mainApp = angular.module("mainApp", []);
+
 mainApp.controller('registerController', ['$scope', '$http', function($scope, $http) {
    const API_REGISTER_URL = '/trello_copy_app/api/register';
 

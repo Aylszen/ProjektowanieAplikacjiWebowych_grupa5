@@ -1,28 +1,30 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
-   <head>
-      <title>Register</title>
-      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<head>
+  <title>Trello</title>
+  <meta charset="UTF-8">
+  <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <link rel="stylesheet" href="../css/index.css">
+</head>
 
-   </head>
-
-   <body>
-      <h2>Register</h2>
-
+<body>
+  <div class="login-page">
+    <div class="form">
       <div ng-app = "mainApp" ng-controller = "registerController">
-         FirstName: <input type = "text" ng-model = "user.fname"><br><br>
-         LastName: <input type = "text" ng-model = "user.lname"><br><br>
-         Email: <input type = "email" ng-model = "user.email"><br><br>
-         Username: <input type = "text" ng-model = "user.username"><br><br>
-         Password: <input type = "password" ng-model = "user.password"><br>
-         <button ng-click="register()">Register</button>
-         {{error}}
+        First Name: <input type = "text" ng-model = "user.fname"><br><br>
+        Last Name: <input type = "text" ng-model = "user.lname"><br><br>
+        Email: <input type = "email" ng-model = "user.email"><br><br>
+        Username: <input type = "text" ng-model = "user.username"><br><br>
+        Password: <input type = "password" ng-model = "user.password"><br>
+        <button ng-click="register()">Register</button>
+        {{error}}
+        <p class="message">Already registered? <a href="/">Sign In</a></p>
       </div>
-
-      <script src="/controller/registerController.js"></script>
-
-      <footer>
-        <input TYPE="button"class="btnLogin" value="LogIn" onClick="parent.location='/'">
-      </footer>
-   </body>
+    </div>
+  </div>
+  <script src="/controller/registerController.js"></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="../js/index.js"></script>
+</body>
 </html>

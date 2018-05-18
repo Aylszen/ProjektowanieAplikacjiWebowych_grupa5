@@ -15,6 +15,14 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname+'/view/index.html'));
 });
 
+app.get('/js/index.js', (req, res) => {
+    res.sendFile(path.join(__dirname+'/js/index.js'));
+});
+
+app.get('/css/index.css', (req, res) => {
+    res.sendFile(path.join(__dirname+'/css/index.css'));
+});
+
 app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname+'/view/register.html'));
 });

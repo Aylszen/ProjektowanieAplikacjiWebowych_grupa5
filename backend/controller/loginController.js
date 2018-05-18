@@ -10,7 +10,6 @@ mainApp.controller('loginController', ['$scope', '$http', '$window' ,function($s
 
    $scope.login = function(pathToNextWebPage) {
       $http.post(API_LOGIN_URL, { user: $scope.user }).then(function(res) {
-
         if (res.data.valid == true){
           console.log(res.data);
             window.location = pathToNextWebPage
