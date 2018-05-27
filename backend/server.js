@@ -39,6 +39,10 @@ app.get('/controller/loginController.js', (req, res) => {
     res.sendFile(path.join(__dirname+'/controller/loginController.js'));
 });
 
+app.get('/controller/tableController.js', (req, res) => {
+    res.sendFile(path.join(__dirname+'/controller/tableController.js'));
+});
+
 app.get('/controller/ngRoute.js', (req, res) => {
     res.sendFile(path.join(__dirname+'/controller/ngRoute.js'));
 });
@@ -46,7 +50,7 @@ app.get('/controller/ngRoute.js', (req, res) => {
 app.post(`${BASE_PATH}/register`, (req, res) => {
     res.set('content-type', 'application/json');
     let body = req.body;
-
+  console.log("Weszło register");
     let newUser = body.user;
     if (newUser) {
         if (newUser.fname && newUser.fname !== '' && newUser.lname && newUser.lname !== '' && newUser.username && newUser.username !== '' && newUser.password && newUser.password !== '' && newUser.email && newUser.email !== '') {
@@ -80,7 +84,7 @@ app.post(`${BASE_PATH}/register`, (req, res) => {
 app.post(`${BASE_PATH}/login`, (req, res) => {
     res.set('content-type', 'application/json');
     let body = req.body;
-
+  console.log("Weszło login");
     let user = body.user;
     if (user) {
         if (user.username && user.username !== '' && user.password && user.password !== '') {
@@ -111,6 +115,16 @@ app.post(`${BASE_PATH}/login`, (req, res) => {
         res.end(JSON.stringify({valid: false, info: 'No user object in request body'}));
     }
 });
+
+app.post(`${BASE_PATH}/home`, (req, res) => {
+    res.set('content-type', 'application/json');
+    let body = req.body;
+    let newTable = body.table;
+    newTable.tableid = 1;
+    db.tables.create(newTable).then((result) => {
+    console.log("Weszło");
+  })});
+
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);

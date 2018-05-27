@@ -14,6 +14,8 @@ mongodb.connect(config.dbConnUrl, { auth: { user: config.dbUser, password: confi
 
     let db = client.db(dbName);
     usersCollection = db.collection('users');
+    tablesCollection = db.collection('tables');
+
 });
 
 module.exports = {
@@ -33,5 +35,10 @@ module.exports = {
         findByUsername: (username) => {
             return usersCollection.findOne({username: username});
         }
-    }
+    },
+    tables: {
+        create: (tables) => {
+            return tablesCollection.insertOne(tables);
+        }
+      }
 };
