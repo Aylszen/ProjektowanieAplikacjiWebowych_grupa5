@@ -1,4 +1,4 @@
-const express = require('express');
+﻿const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
@@ -23,12 +23,19 @@ app.get('/css/index.css', (req, res) => {
     res.sendFile(path.join(__dirname+'/css/index.css'));
 });
 
+app.get('/css/board.scss', (req, res) => {
+    res.sendFile(path.join(__dirname+'/css/board.scss'));
+});
+
 app.get('/register', (req, res) => {
     res.sendFile(path.join(__dirname+'/view/register.html'));
 });
 
 app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname+'/view/home.html'));
+});
+app.get('/board', (req, res) => {
+    res.sendFile(path.join(__dirname+'/view/board.html'));
 });
 
 app.get('/controller/registerController.js', (req, res) => {
@@ -37,6 +44,10 @@ app.get('/controller/registerController.js', (req, res) => {
 
 app.get('/controller/loginController.js', (req, res) => {
     res.sendFile(path.join(__dirname+'/controller/loginController.js'));
+});
+
+app.get('/controller/boardController.js', (req, res) => {
+    res.sendFile(path.join(__dirname+'/controller/boardController.js'));
 });
 
 app.get('/controller/tableController.js', (req, res) => {
