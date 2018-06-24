@@ -1,17 +1,19 @@
 <html>
 
-   <head>
-      <title>Home</title>
-      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-      <link rel="stylesheet" href="../css/index.css">
-   </head>
+<head>
+  <title>Home</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+  <b>Hello!!
+    <b>
+      <div ng-app="mainApp" ng-controller="tableController">
+        TableName:
+        <input type="text" ng-model="table.tablename" />
+        <button ng-click="createTable()">CreateTable</button>
+      </div>
+      <script src="/controller/tableController.js"></script>
+</body>
 
-   <body>
-     <b>Hello!!<b>
-       <div ng-app = "mainApp" ng-controller = "tableController">
-         TableName: <input type="text" ng-model = "table.tablename"/>
-       <button ng-click="createTable()">CreateTable</button>
-     </div>
-     <script src="/controller/tableController.js"></script>
-   </body>
 </html>

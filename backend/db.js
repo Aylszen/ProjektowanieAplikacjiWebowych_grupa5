@@ -6,7 +6,12 @@ const config = require('./config');
 const dbName = 'trello_copy_db';
 let dbClient, usersCollection;
 
-mongodb.connect(config.dbConnUrl, { auth: { user: config.dbUser, password: config.dbPass }}, (err, client) => {
+mongodb.connect(config.dbConnUrl, {
+    auth: {
+        user: config.dbUser,
+        password: config.dbPass
+    }
+}, (err, client) => {
     if (err) {
         // console.error(err);
         throw err;
@@ -30,15 +35,19 @@ module.exports = {
 
         },
         findById: (id) => {
-            return usersCollection.findOne({_id: id});
+            return usersCollection.findOne({
+                _id: id
+            });
         },
         findByUsername: (username) => {
-            return usersCollection.findOne({username: username});
+            return usersCollection.findOne({
+                username: username
+            });
         }
     },
     tables: {
         create: (tables) => {
             return tablesCollection.insertOne(tables);
         }
-      }
+    }
 };

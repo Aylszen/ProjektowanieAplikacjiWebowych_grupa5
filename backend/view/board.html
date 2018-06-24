@@ -1,24 +1,22 @@
 <div id="board­">
-        <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        <link rel="stylesheet" href="../css/index.css">
-        <div ng-app = "mainApp" ng-controller = "boardController">    
-            <div ng­-repeat="List in lists" >
-                    <h1>pokaż: {{list­-name}}</h1>
-             <input class="list­-name" ng­-model="list.name"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <link rel="stylesheet" href="../css/index.css">
+  <div ng-app="mainApp" ng-controller="boardController">
+    <div ng­-repeat="List in lists">
+      <h1>pokaż: {{list­.name}}</h1>
+      <input class="list­-name" ng­-model="list.name" />
 
-             <div class="list­-content">
-             <div ng­-repeat="ticket in list" class="ticket">
-             <input class="ticket­-title" ng­-model="ticket.title"/>
-                <h1>{{lists}}</h1>
+      <div class="list­-content">
+        <div ng­-repeat="ticket in list" class="ticket">
+          <input class="ticket­-title" ng­-model="ticket.title" />
+          <h1>{{lists}}</h1>
 
-            </div>
-
-            </div>
         </div>
-      <button ng-click="createTable()"> Add Ticket </button>
 
-
-
-      <script src="/controller/boardController.js"></script>
+      </div>
     </div>
+    <button ng-click="createTable()"> Add Ticket </button>
+    
+    <script src="/controller/boardController.js"></script>
   </div>
+</div>
