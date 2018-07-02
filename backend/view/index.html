@@ -14,8 +14,8 @@
       <div ng-app="mainApp" ng-controller="loginController">
         Username:
         <input type="text" ng-model="user.username" /> Password:
-        <input (keydown.enter)="login('/board')" type="password" ng-model="user.password" />
-        <button ng-click="login('/board')">Login</button>
+        <input (keydown.enter)="login('/home')" type="password" ng-model="user.password" />
+        <button ng-click="login('/home')">Login</button>
         {{error}}
         <p class="message">Not registered?
           <a href="/register">Create an account</a>

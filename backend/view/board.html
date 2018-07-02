@@ -2,33 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <title>Trelo</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 <body ng-app="myApp" ng-controller="todoCtrl">
-    <h2>My Todo</h2>
- 
-    <form ng-submit="todoAdd()">
-        <input type="type" name="" ng-model="todoInput" placeholder="Add New">
-        <input type="submit" name="Add New" value="Add item">
+
+     <form ng-submit="AddTable()">
+        <input type="type" name="" ng-model="InputAdd" placeholder="Add New Table">
+        <input type="submit" name="Add New Table" value="Add table">
     </form>
-    <br>
+    <div ng-repeat="y in tableList">
+        <h2>{{y.tableText}}</h2>
  
+        <form ng-submit="todoAdd()">
+         <input type="type" name="" ng-model="todoInput" placeholder="Add New">
+          <input type="submit" name="Add New" value="Add item">
+        </form>
+         <br>
+    
     <div ng-repeat="x in todoList">
         <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
     </div>
+</div>
  
-    <p><button ng-click="remove()">Remowe</button></p>
+    <p><button ng-click="remove()">Remove</button></p>
 
- 
- 
- 
- 
+
  
 <script type="text/javascript">
     var app = angular.module("myApp", []);
     app.controller("todoCtrl", function($scope){
         $scope.todoList = [{todoText: "First item", done: false}, {todoText: "second item", done: false}];
+        $scope.tableList = [{tableText: "todo"},{tableText: "inprogress"},{tableText: "Done"}]
+      
         $scope.todoAdd = function(){
             $scope.todoList.push({todoText: $scope.todoInput, done: false});
             $scope.todoInput = "";
@@ -39,6 +45,10 @@
             angular.forEach(oldList, function(x){
                 if(!x.done) $scope.todoList.push(x);
             })
+        }
+        $scope.AddTable = function($scope){
+            $scope.tableList.push({tableText: $scope.inputText});
+            $scope.inputText="";
         }
         $scope.annoy = function(){
             alert("annoy!")
