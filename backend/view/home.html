@@ -16,13 +16,15 @@
       </div>
      <div ng-repeat="x in todoList">
        <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
-     </div>
+    {{x}}
+      </div>
      <p><button ng-click="remove()">Remove</button></p>
 
     <script type="text/javascript">
     var app = angular.module("myApp",[]);
     app.controller("todoCtrl", function($scope){
         $scope.todoList = [{todoText:"First item", done: false}, {todoText: "second item", done: false}]
+
         $scope.todoAdd = function(){
         $scope.todoList.push({todoText: $scope.todoInput, done: false});
         $scope.todoInput = "";

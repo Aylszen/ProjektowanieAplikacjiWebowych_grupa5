@@ -4,24 +4,29 @@
     <meta charset="UTF-8">
     <title>Trelo</title>
    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+   <link rel="stylesheet" href="../css/index.css">
 </head>
 <body ng-app="myApp" ng-controller="todoCtrl">
 
      <form ng-submit="AddTable()">
         <input type="type" name="" ng-model="InputAdd" placeholder="Add New Table">
         <input type="submit" name="Add New Table" value="Add table">
+        {{tableList}}
     </form>
     <div ng-repeat="y in tableList">
+    
         <h2>{{y.tableText}}</h2>
- 
+        
         <form ng-submit="todoAdd()">
          <input type="type" name="" ng-model="todoInput" placeholder="Add New">
           <input type="submit" name="Add New" value="Add item">
         </form>
          <br>
     
-    <div ng-repeat="x in todoList">
-        <input type="checkbox" ng-model="x.done"> <span ng-bind="x.todoText"></span>
+        <div ng-repeat="x in y.ticket">
+        <input type="checkbox" ng-model="x.done"> <span ng-bind="x.text"></span>
+       
+      
     </div>
 </div>
  
@@ -32,11 +37,26 @@
 <script type="text/javascript">
     var app = angular.module("myApp", []);
     app.controller("todoCtrl", function($scope){
-        $scope.todoList = [{todoText: "First item", done: false}, {todoText: "second item", done: false}];
-        $scope.tableList = [{tableText: "todo"},{tableText: "inprogress"},{tableText: "Done"}]
-      
+         $scope.todoList = [{todoText: "First item", done: false}, {todoText: "second item", done: false}];
+         $scope.tableList = [
+            {tableText: "todo",
+                ticket: [
+                    {text: "first", done: false},
+                    {text: "second", done: false}
+                        ] 
+            },
+            {tableText: "inprogress",
+                ticket:[
+                    {text: "third", done: false}
+                        ]    
+            },
+            {tableText: "Done",
+                ticket:[]
+            }]
+
+        
         $scope.todoAdd = function(){
-            $scope.todoList.push({todoText: $scope.todoInput, done: false});
+            $scope.tableList.push({ticket:[{text:  $scope.todoInput, done: false}]});
             $scope.todoInput = "";
         }
         $scope.remove = function(){
@@ -46,14 +66,17 @@
                 if(!x.done) $scope.todoList.push(x);
             })
         }
-        $scope.AddTable = function($scope){
-            $scope.tableList.push({tableText: $scope.inputText});
-            $scope.inputText="";
+        $scope.AddTable = function(){
+            $scope.tableList.push({tableText: $scope.InputAdd, ticket:  [{text: "lol"}]});
+            $scope.InputAdd="";
         }
         $scope.annoy = function(){
             alert("annoy!")
         }
+        $scope.addTicket = function(){
+            $scope.tableList;
+        }
     });
-</script>
+    </script>
 </body>
 </html>
