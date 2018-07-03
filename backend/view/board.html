@@ -16,16 +16,16 @@
     <div ng-repeat="y in tableList">
     
         <h2>{{y.tableText}}</h2>
-        
-        <form ng-submit="todoAdd()">
-         <input type="type" name="" ng-model="todoInput" placeholder="Add New">
-          <input type="submit" name="Add New" value="Add item">
+     
+        <form ng-submit="AddTicket(y,text)">
+         <input type="type" name="" ng-model="text"  placeholder="Add New">
+          <input type="submit" name="Add New" value="Add item"> 
         </form>
          <br>
     
         <div ng-repeat="x in y.ticket">
-        <input type="checkbox" ng-model="x.done"> <span ng-bind="x.text"></span>
-       
+        <input type="checkbox" ng-model="x.done"> <span ng-bind="x.text"></span> 
+      
       
     </div>
 </div>
@@ -55,15 +55,17 @@
             }]
 
         
-        $scope.todoAdd = function(){
-            $scope.tableList.push({ticket:[{text:  $scope.todoInput, done: false}]});
-            $scope.todoInput = "";
+        $scope.AddTicket = function(tT,text){
+            tT.ticket.push({text: this.text, done: false});
+          //  $scope.tableList[{tableText: mm}].push({ticket:[{text:  $scope.todoInput, done: false}]});
+            this.text = "";
+
         }
         $scope.remove = function(){
-            var oldList = $scope.todoList;
-            $scope.todoList = [];
+            var oldList = $scope.tableList;
+            $scope.tableList = [];
             angular.forEach(oldList, function(x){
-                if(!x.done) $scope.todoList.push(x);
+                if(!x.done) $scope.tableList.push(x);
             })
         }
         $scope.AddTable = function(){
@@ -72,9 +74,6 @@
         }
         $scope.annoy = function(){
             alert("annoy!")
-        }
-        $scope.addTicket = function(){
-            $scope.tableList;
         }
     });
     </script>
