@@ -3,20 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Trelo</title>
-   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-   <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-dragula/1.2.7/dragula.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-dragula/1.2.7/angular-dragula.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="../controller/angular-drag-and-drop-lists.min.js"></script>
+ 
 </head>
-<body ng-app="myApp" ng-controller="todoCtrl">
+<body ng-app="myApp" ng-controller="Ctrl">
+<div class="dnd-container" dnd-list="tableList">
 
      <form ng-submit="AddTable()">
         <input type="type" name="" ng-model="InputAdd" placeholder="Add New Table">
         <input type="submit" name="Add New Table" value="Add table">
         {{tableList}}
+
     </form>
-    <div ng-repeat="y in tableList">
+    <div ng-repeat="y in tableList"
+    dragula='"bag-one"'
+    dragula-model="y.ticket"
+    dragula-scope='$parent'
+    style="background-color:#E6E6FA">
     
         <h2>{{y.tableText}}</h2>
-     
+    
+     <h6>{{$parent}}</h6>
         <form ng-submit="AddTicket(y,text)">
          <input type="type" name="" ng-model="text"  placeholder="Add New">
           <input type="submit" name="Add New" value="Add item"> 
@@ -27,18 +38,17 @@
         <input type="checkbox" ng-model="x.done"> <span ng-bind="x.text"></span> 
       
       
+        </div>
     </div>
 </div>
- 
     <p><button ng-click="remove()">Remove</button></p>
 
 
  
 <script type="text/javascript">
-    var app = angular.module("myApp", []);
-    app.controller("todoCtrl", function($scope){
-         $scope.todoList = [{todoText: "First item", done: false}, {todoText: "second item", done: false}];
-         $scope.tableList = [
+    var app = angular.module("myApp", [angularDragula(angular)]);
+    app.controller("Ctrl", function($scope){
+          $scope.tableList = [
             {tableText: "todo",
                 ticket: [
                     {text: "first", done: false},
@@ -57,8 +67,7 @@
         
         $scope.AddTicket = function(tT,text){
             tT.ticket.push({text: this.text, done: false});
-          //  $scope.tableList[{tableText: mm}].push({ticket:[{text:  $scope.todoInput, done: false}]});
-            this.text = "";
+             this.text = "";
 
         }
         $scope.remove = function(){
