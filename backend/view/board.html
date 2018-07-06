@@ -16,7 +16,14 @@
         <input type="submit" name="Add New Table" value="Add table">
         {{tableList}}
      </form>
+
+     <div
+     dragula='"bag-one"'
+     dragula-model="tableList"
+     dragula-scope="$parent">
+    
     <div ng-repeat="y in tableList"
+    
          style="background-color:#E6E6FA">
         <h2>{{y.tableText}}</h2>
         <form ng-submit="AddTicket(y,text)" >
@@ -35,6 +42,7 @@
             </div>
          </div>    
     </div>
+</div>
 </div>
  
 <script type="text/javascript">
@@ -71,7 +79,7 @@
             })
         }
         $scope.AddTable = function(){
-            $scope.tableList.push({tableText: $scope.InputAdd, ticket:  [{text: "lol"}]});
+            $scope.tableList.push({tableText: $scope.InputAdd, ticket:  [{text: "sample"}]});
             $scope.InputAdd="";
         }
         $scope.annoy = function(){
