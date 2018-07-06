@@ -4,46 +4,38 @@
     <meta charset="UTF-8">
     <title>Trelo</title>
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-dragula/1.2.7/dragula.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-dragula/1.2.7/angular-dragula.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-dragula/1.2.8/dragula.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-dragula/1.2.8/angular-dragula.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="../controller/angular-drag-and-drop-lists.min.js"></script>
  
 </head>
 <body ng-app="myApp" ng-controller="Ctrl">
-<div class="dnd-container" dnd-list="tableList">
-
+<div>
      <form ng-submit="AddTable()">
         <input type="type" name="" ng-model="InputAdd" placeholder="Add New Table">
         <input type="submit" name="Add New Table" value="Add table">
         {{tableList}}
-
-    </form>
+     </form>
     <div ng-repeat="y in tableList"
-    dragula='"bag-one"'
-    dragula-model="y.ticket"
-    dragula-scope='$parent'
-    style="background-color:#E6E6FA">
-    
+         style="background-color:#E6E6FA">
         <h2>{{y.tableText}}</h2>
-    
-     <h6>{{$parent}}</h6>
-        <form ng-submit="AddTicket(y,text)">
-         <input type="type" name="" ng-model="text"  placeholder="Add New">
-          <input type="submit" name="Add New" value="Add item"> 
+        <form ng-submit="AddTicket(y,text)" >
+            <input type="type" name="" ng-model="text"  placeholder="Add New">
+             <input type="submit" name="Add New" value="Add item"> 
         </form>
          <br>
-    
-        <div ng-repeat="x in y.ticket">
-        <input type="checkbox" ng-model="x.done"> <span ng-bind="x.text"></span> 
-      
-      
-        </div>
+        <div 
+        dragula='"bag-one"'
+         dragula-model="y.ticket"
+         dragula-scope="$parent"
+         style="background-color: #cccccc">
+
+            <div ng-repeat="x in y.ticket" >
+                <input type="checkbox" ng-model="x.done"> <span ng-bind="x.text"></span> 
+            </div>
+         </div>    
     </div>
 </div>
-    <p><button ng-click="remove()">Remove</button></p>
-
-
  
 <script type="text/javascript">
     var app = angular.module("myApp", [angularDragula(angular)]);
@@ -61,14 +53,15 @@
                         ]    
             },
             {tableText: "Done",
-                ticket:[]
+                ticket:[
+                    {text:"next",done:false}
+                ]
             }]
 
         
         $scope.AddTicket = function(tT,text){
-            tT.ticket.push({text: this.text, done: false});
+         tT.ticket.push({text: this.text, done: false});
              this.text = "";
-
         }
         $scope.remove = function(){
             var oldList = $scope.tableList;
@@ -84,6 +77,7 @@
         $scope.annoy = function(){
             alert("annoy!")
         }
+
     });
     </script>
 </body>
